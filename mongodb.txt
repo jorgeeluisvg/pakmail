@@ -1,0 +1,1 @@
+{$and:[{bedrooms:2},{ beds:2}]}

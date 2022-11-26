@@ -1,0 +1,47 @@
+package com.example.pkmail.repository;
+
+import com.example.pkmail.entities.Mensajeria2;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface Mensajeria2Repository extends JpaRepository<Mensajeria2,Long> {
+    //enviosMensajeria2
+    @Query(value = "select Distinct su.sucursal,me.mensajeria, \n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 1 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Enero,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 1 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Enero_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 2 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Febrero,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 2 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Febrero_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 3 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Marzo,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 3 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Marzo_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 4 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Abril,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 4 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Abril_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 5 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Mayo,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 5 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Mayo_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 6 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Junio,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 6 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Junio_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 7 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Julio,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 7 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Julio_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 8 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Agosto,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 8 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Agosto_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 9 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Septiembre,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 9 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Septiembre_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 10 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Octubre,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 10 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Octubre_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 11 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Noviembre,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 11 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Noviembre_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 12 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Diciembre,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where month(STR_TO_DATE(id_fecha, \"%Y%m%d\")) = 12 AND H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Diciembre_impor,\n" +
+            "COALESCE((SELECT count(*) FROM h_envios H where H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Total,\n" +
+            "COALESCE((SELECT CONCAT(sum(importe)) FROM h_envios H where H.id_mensajeria=me.id_mensajeria AND H.id_sucursal=su.id_sucursal AND year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))=E.anio group by me.mensajeria,H.id_sucursal, year(STR_TO_DATE(id_fecha, \"%Y%m%d\"))),0) Total_impor,\n" +
+            "E.anio\n" +
+            "from (select distinct id_mensajeria, id_sucursal,year(STR_TO_DATE(id_fecha, \"%Y%m%d\")) anio from h_envios) E\n" +
+            "Left join d_mensajeria me ON E.id_mensajeria = me.id_mensajeria  \n" +
+            "Left join d_sucursal su ON E.id_sucursal = su.id_sucursal\n" +
+            "where me.mensajeria like \"%%\" AND su.sucursal like \"%%\" AND E.anio like \"%%\"\n" +
+            "group by me.mensajeria,su.id_sucursal,E.anio;",nativeQuery = true)
+    List<Mensajeria2> enviosxmensajeria2();
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>PakMail</title>
+	<!-- DataTables -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+	<!-- core:css -->
+	<link rel="stylesheet" href="../assets/vendors/core/core.css">
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<link rel="stylesheet" href="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+	<!-- end plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="../assets/fonts/feather-font/css/iconfont.css">
+	<link rel="stylesheet" href="../assets/vendors/flag-icon-css/css/flag-icon.min.css">
+	<!-- endinject -->
+	<!-- Layout styles -->
+	<link rel="stylesheet" href="../assets/css/demo_2/style.css">
+	<!-- End layout styles -->
+	<link rel="shortcut icon" href="../assets/images/favicon.png" />
+</head>
+
+<body>
+	<div class="main-wrapper">
+
+		<!-- partial:partials/_sidebar.html -->
+		<nav class="sidebar">
+			<div class="sidebar-header">
+				<a href="index.html" class="sidebar-brand">
+					Pak<span style="font-weight: bold">Mail</span>
+				</a>
+				<div class="sidebar-toggler not-active">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+
+			<!--Inicio sidebar-->
+			<div class="sidebar-body">
+				<ul class="nav">
+					<li class="nav-item nav-category">Main</li>
+					<li class="nav-item">
+						<a href="index.html" class="nav-link">
+							<i class="link-icon" data-feather="box"></i>
+							<span class="link-title">Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="/dropzone" class="nav-link">
+							<i class="link-icon" data-feather="box"></i>
+							<span class="link-title">Dropzone</span>
+						</a>
+					</li>
+					<li class="nav-item nav-category">Funciones</li>
+					<li class="nav-item">
+						<a href="/enviosxmensajeria" class="nav-link" role="button" aria-expanded="false"
+							aria-controls="emails">
+							<i class="link-icon" data-feather="mail"></i>
+							<span class="link-title">Envios Mensajeria</span>
+						</a>
+						<br>
+					</li>
+					<li class="nav-item">
+						<a href="/enviosxcliente" class="nav-link" role="button" aria-expanded="false"
+						   aria-controls="emails">
+							<i class="link-icon" data-feather="mail"></i>
+							<span class="link-title">Envios Cliente</span>
+						</a>
+						<br>
+					</li>
+					<li class="nav-item">
+						<a href="/enviosxfcontactosucursal" class="nav-link">
+							<i class="link-icon" data-feather="message-square"></i>
+							<span class="link-title">Envios Contacto-Sucursal</span>
+						</a>
+					</li>
+					<br>
+					<li class="nav-item">
+						<a href="/envios/servicio-mesajeria-fecha" class="nav-link">
+							<i class="link-icon" data-feather="calendar"></i>
+							<span class="link-title">Envios servicio<br> Mensajeria-Fecha</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!--No mover-->
+		<nav class="settings-sidebar">
+			<div class="sidebar-body">
+				<div class="theme-wrapper">
+					</a>
+				</div>
+			</div>
+		</nav>
+		<!--No mover-->
+		<!-- partial -->
+		<div class="page-wrapper">
+			<!-- partial:partials/_navbar.html -->
+			<nav class="navbar">
+				<a href="#" class="sidebar-toggler">
+					<i data-feather="menu"></i>
+				</a>
+				<div class="navbar-content">
+					<form class="search-form">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+								</div>
+							</div>
+						</div>
+					</form>
+					<ul class="navbar-nav">
+
+						<li class="nav-item dropdown nav-profile">
+							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img src="https://via.placeholder.com/30x30" alt="profile">
+							</a>
+							<div class="dropdown-menu" aria-labelledby="profileDropdown">
+								<div class="dropdown-header d-flex flex-column align-items-center">
+									<div class="figure mb-3">
+										<img src="https://via.placeholder.com/80x80" alt="">
+									</div>
+									<div class="info text-center">
+										<p class="name font-weight-bold mb-0">Amiah Burton</p>
+										<p class="email text-muted mb-3">amiahburton@gmail.com</p>
+									</div>
+								</div>
+								<div class="dropdown-body">
+									<ul class="profile-nav p-0 pt-3">
+										<li class="nav-item">
+											<a href="pages/general/profile.html" class="nav-link">
+												<i data-feather="user"></i>
+												<span>Profile</span>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a href="javascript:;" class="nav-link">
+												<i data-feather="edit"></i>
+												<span>Edit Profile</span>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a href="javascript:;" class="nav-link">
+												<i data-feather="repeat"></i>
+												<span>Switch User</span>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a href="javascript:;" class="nav-link">
+												<i data-feather="log-out"></i>
+												<span>Log Out</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!-- partial -->
+			<div class="container">
+				<div class="page-content">
+					<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+						<div>
+							<h4 class="mb-3 mb-md-0">Dashboard </h4>
+						</div>
+						<div class="d-flex align-items-center flex-wrap text-nowrap">
+							<button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+								<i class="btn-icon-prepend" data-feather="download-cloud"></i>
+								Generar Reporte
+							</button>
+						</div>
+					</div>
+
+					<!--Form empresa-->
+					<div class="form-group">
+						<label>Selecciona Mensajeria</label>
+						<select class="js-example-basic-single w-100" id="vmensajeria">
+							<option value="MULTIPACK">MULTIPACK</option>
+							<option value="UPS INT">UPS INT</option>
+							<option value="UPS NAL">UPS NAL</option>
+							<option value="DHL INT">DHL INT</option>
+							<option value="DHL NACIONAL">DHL NACIONAL</option>
+							<option value="DHL">DHL</option>
+							<option value="FEDEX">FEDEX</option>
+							<option value="FEDEX NAL">FEDEX NAL</option>
+							<option value="ESTAFETA">ESTAFETA</option>
+							<option value="MEXPOST">MEXPOST</option>
+							<option value="PAQUETEXPRESS">PAQUETEXPRESS</option>
+							<option value="REDPACK">REDPACK</option>
+							<option value="PEGASO">PEGASO</option>
+							<option value="AEROFLASH">AEROFLASH</option>
+							<option value="ALMEX">ALMEX</option>
+						</select>
+						<br>
+
+						<!--Aqui va el footer y la tabla-->
+
+				<table class="display" style="width:100%" id="mensajeria" >
+					<thead>
+						<tr>
+							<th>
+								Fecha de envio
+							</th>
+							<th>
+								Destino
+							</th>
+							<th>
+								Mensajeria
+							</th>
+							<th>
+								Tipo de Servicio
+							</th>
+							<th>
+								Costo
+							</th>
+							<th>
+								Sucursal
+							</th>
+							<th>
+								Cliente
+							</th>
+							<th>
+								Tipo de Envio
+							</th>
+							<th>
+								Forma de Contacto
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<!--fin tabla-->
+			</div>
+		</div>
+	<br><br>
+
+				<!--Enmedio-->
+	</div>
+</div>
+
+		<!-- core:js -->
+		<script src="../assets/vendors/core/core.js"></script>
+		<!-- endinject -->
+		<!-- plugin js for this page -->
+		<script src="../assets/vendors/chartjs/Chart.min.js"></script>
+		<script src="../assets/vendors/jquery.flot/jquery.flot.js"></script>
+		<script src="../assets/vendors/jquery.flot/jquery.flot.resize.js"></script>
+		<script src="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+		<script src="../assets/vendors/apexcharts/apexcharts.min.js"></script>
+		<script src="../assets/vendors/progressbar.js/progressbar.min.js"></script>
+		<!-- end plugin js for this page -->
+		<!-- inject:js -->
+		<script src="../assets/vendors/feather-icons/feather.min.js"></script>
+		<script src="../assets/js/template.js"></script>
+		<!-- endinject -->
+		<!-- custom js for this page -->
+		<script src="../assets/js/dashboard.js"></script>
+		<script src="../assets/js/datepicker.js"></script>
+		<!-- DataTables -->
+		<script type="text/javascript" charset="utf8"
+			src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+		<script>
+			$(document).ready(function () {
+
+				$(function getMensajeria() {
+					$("#vmensajeria").change(function () {
+						var mensajeriaseleccionada = $("#vmensajeria option:selected").text();
+						console.log(mensajeriaseleccionada)
+						cargarPorMensajeria(mensajeriaseleccionada)
+					})
+				})
+
+				async function cargarPorMensajeria(mensajeriaseleccionada) {
+					const respuesta = await fetch('envios/' + mensajeriaseleccionada, {
+						method: 'GET',
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json'
+						}
+					});
+					let content = await respuesta.json();
+					console.log(content);
+
+					//dataTable
+					$('#mensajeria').DataTable({
+						'destroy': true,
+						"pageLength": 5,
+						'data': content,
+						'columns': [
+							{ 'data': 'fecha_envio' },
+							{ 'data': 'destino' },
+							{ 'data': 'mensajeria' },
+							{ 'data': 'tipo_de_servicio' },
+							{ 'data': 'costo' },
+							{ 'data': 'sucursal' },
+							{ 'data': 'cliente' },
+							{ 'data': 'tipo_de_envio' },
+							{ 'data': 'forma_de_contacto' },
+						],
+					});
+
+				}
+			});
+		</script>
+</body>
+
+</html>
