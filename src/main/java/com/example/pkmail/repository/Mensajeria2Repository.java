@@ -3,6 +3,7 @@ package com.example.pkmail.repository;
 import com.example.pkmail.entities.Mensajeria2;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public interface Mensajeria2Repository extends JpaRepository<Mensajeria2,Long> {
             "from (select distinct id_mensajeria, id_sucursal,year(STR_TO_DATE(id_fecha, \"%Y%m%d\")) anio from h_envios) E\n" +
             "Left join d_mensajeria me ON E.id_mensajeria = me.id_mensajeria  \n" +
             "Left join d_sucursal su ON E.id_sucursal = su.id_sucursal\n" +
-            "where me.mensajeria like \"%%\" AND su.sucursal like \"%%\" AND E.anio like \"%%\"\n" +
-            "group by me.mensajeria,su.id_sucursal,E.anio;",nativeQuery = true)
-    List<Mensajeria2> enviosxmensajeria2();
+            "where me.mensajeria like \"%%\" AND su.sucursal like \"%%\" AND E.anio like :anioo\n" +
+            "group by me.mensajeria,su.id_sucursal,E.anio",nativeQuery = true)
+    List<Mensajeria2> enviosxmensajeria2(@Param("anioo") String anioo);
 }

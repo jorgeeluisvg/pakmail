@@ -13,7 +13,7 @@ public class Tservicio2ServiceImpl implements Tservicio2Service {
     private Tservicio2Repository tservicio2Repositorio;
 
     @Override
-    public List<Tservicio2> enviosxtservicio2() {
-        return tservicio2Repositorio.enviosxtservicio2();
+    public List<Tservicio2> enviosxtservicio2(String anioo) {
+        return tservicio2Repositorio.enviosxtservicio2(anioo);
     }
 }

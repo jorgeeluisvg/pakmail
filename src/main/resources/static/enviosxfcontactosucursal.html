@@ -173,7 +173,7 @@
 							<h4 class="mb-3 mb-md-0">Cantidad e importe envios por Forma-Contaco Sucursal </h4>
 						</div>
 						<div class="d-flex align-items-center flex-wrap text-nowrap">
-							<button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+							<button onclick='getanio()' type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
 								<i class="btn-icon-prepend" data-feather="download-cloud"></i>
 								Generar Reporte
 							</button>
@@ -185,8 +185,8 @@
 					<div class="form-group">
 						<label>Selecciona Año</label>
 						<select class="js-example-basic-single w-100" id="vanio">
-							<option value="1">2011</option>
-							<option value="2">2012</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
 						</select>
 						<br>
 
@@ -313,124 +313,130 @@
 			src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 		<script>
-			$(document).ready(function () {
+			function getanio(){
+				var e = document.getElementById("vanio");
+				var value = e.value;
+				var text = e.options[e.selectedIndex].text;
+				cargarPorFcontacto(value);
+			}
 
-				cargarPorFcontactoSucursal();
-
-				async function cargarPorFcontactoSucursal() {
-					const respuesta = await fetch('enviosporfcontactosucursal2', {
-						method: 'GET',
-						headers: {
-							'Accept': 'application/json',
-							'Content-Type': 'application/json'
-						}
-					});
-					let content = await respuesta.json();
-					console.log(content);
-
-					//dataTable
-					$('#tabla').DataTable({
-						scrollX: true,
-						'destroy': true,
-						"pageLength": 5,
-						'data': content,
-						'columns': [
-							{ 'data': 'sucursal' },
-							{ 'data': 'forma_contacto' },
-							{ 'data': 'enero' },
-							{ 'data': 'febrero' },
-							{ 'data': 'marzo' },
-							{ 'data': 'abril' },
-							{ 'data': 'mayo' },
-							{ 'data': 'junio' },
-							{ 'data': 'julio' },
-							{ 'data': 'agosto' },
-							{ 'data': 'septiembre' },
-							{ 'data': 'octubre' },
-							{ 'data': 'noviembre' },
-							{ 'data': 'diciembre' },
-							{ 'data': 'total' },
-							{ 'data': 'total_impor' },
-							{ 'data': 'anio' },
-						],
-					});
-					return content;
-
+			async function cargarPorFcontacto(anioseleccionado) {
+				console.log("el anio esta en"+anioseleccionado);
+				if (anioseleccionado == undefined){
+					anioseleccionado = 2011;
+					console.log("el anio esta en"+anioseleccionado);
 				}
-				cargarPorFcontactoSucursal().then(content => {
-					const sucursal = content.map(
-							function (index) {
-								return index.sucursal;
-							})
-
-					const total = content.map(
-							function (index) {
-								return index.total;
-							})
-
-					const total_impor = content.map(
-							function (index) {
-								return index.total_impor;
-							})
-
-
-
-					console.log(sucursal);
-					console.log("total :");
-					console.log(total);
-					console.log("total importe :");
-					console.log(total_impor);
-
-					myChart.config.data.labels = sucursal;
-					myChart.config.data.datasets[0].data = total;
-					myChart.config.data.datasets[1].data = total_impor;
-					myChart.update();
+				const respuesta = await fetch('enviosporfcontactosucursal2/'+anioseleccionado, {
+					method: 'GET',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					}
 				});
+				let content = await respuesta.json();
+				console.log(content);
 
-				const labels = [
-					'January',
-					'February',
-					'March',
-					'April',
-					'May',
-					'June',
-				];
+				const sucursal = content.map(
+						function (index) {
+							return index.sucursal;
+						})
 
-				const data = {
-					labels: labels,
-					datasets: [{
-						label: 'total',
-						backgroundColor: 'rgb(255, 99, 132)',
-						borderColor: 'rgb(255, 99, 132)',
-						data: [0, 10, 5, 2, 20, 30, 45],
-					}, {
-						label: 'total importe',
-						backgroundColor: 'rgb(0, 255, 0)',
-						borderColor: 'rgb(0, 255, 0)',
-						data: [0, 10, 5, 2, 20, 30, 45],
-					},
+				const total = content.map(
+						function (index) {
+							return index.total;
+						})
 
-					]
-				};
+				const total_impor = content.map(
+						function (index) {
+							return index.total_impor;
+						})
 
-				const config = {
-					type: 'bar',
-					data: data,
-					options: {
-						scales: {
-							y: {
-								beginAtZero: true
-							}
+				console.log(sucursal);
+				console.log("total :");
+				console.log(total);
+				console.log("total importe :");
+				console.log(total_impor);
+
+				myChart.config.data.labels = sucursal;
+				myChart.config.data.datasets[0].data = total;
+				myChart.config.data.datasets[1].data = total_impor;
+				myChart.update();
+
+				//dataTable
+				$('#tabla').DataTable({
+					scrollX: true,
+					'destroy': true,
+					"pageLength": 5,
+					'data': content,
+					'columns': [
+						{ 'data': 'sucursal' },
+						{ 'data': 'forma_contacto' },
+						{ 'data': 'enero' },
+						{ 'data': 'febrero' },
+						{ 'data': 'marzo' },
+						{ 'data': 'abril' },
+						{ 'data': 'mayo' },
+						{ 'data': 'junio' },
+						{ 'data': 'julio' },
+						{ 'data': 'agosto' },
+						{ 'data': 'septiembre' },
+						{ 'data': 'octubre' },
+						{ 'data': 'noviembre' },
+						{ 'data': 'diciembre' },
+						{ 'data': 'total' },
+						{ 'data': 'total_impor' },
+						{ 'data': 'anio' },
+					],
+				});
+				return content;
+
+			}
+
+			const labels = [
+				'January',
+				'February',
+				'March',
+				'April',
+				'May',
+				'June',
+			];
+
+			const data = {
+				labels: labels,
+				datasets: [{
+					label: 'total',
+					backgroundColor: 'rgb(255, 99, 132)',
+					borderColor: 'rgb(255, 99, 132)',
+					data: [0, 10, 5, 2, 20, 30, 45],
+				}, {
+					label: 'total importe',
+					backgroundColor: 'rgb(0, 255, 0)',
+					borderColor: 'rgb(0, 255, 0)',
+					data: [0, 10, 5, 2, 20, 30, 45],
+				},
+
+				]
+			};
+
+			const config = {
+				type: 'bar',
+				data: data,
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
 						}
-					},
-				};
+					}
+				},
+			};
 
-				const myChart = new Chart(
-						document.getElementById('myChart'),
-						config
-				);
-			});
+			const myChart = new Chart(
+					document.getElementById('myChart'),
+					config
+			);
+
 			<!--Graficas -->
+
 		</script>
 			</body>
 

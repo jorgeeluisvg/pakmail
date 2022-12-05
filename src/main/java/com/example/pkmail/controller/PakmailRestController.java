@@ -131,17 +131,18 @@ public class PakmailRestController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /* CLIENTE 2*/
-    @GetMapping("/enviosporcliente2")
-    public List<Cliente2> enviosxCliente2(){
-        return serviceCliente2.enviosxcliente2();
+    @GetMapping("/enviosporcliente2/{anio}")
+    public List<Cliente2> enviosxCliente2(@PathVariable String anio){
+        return serviceCliente2.enviosxcliente2(anio);
     }
     /* CLIENTE FIN*/
 
 
     /* MENSAJERIA 2*/
-    @GetMapping("/enviospormensajeria2")
-    public List<Mensajeria2> enviosxMensajeria2(){
-        return serviceMensajeria2.enviosxmensajeria2();
+    @GetMapping("/enviospormensajeria2/{anio}")
+    public List<Mensajeria2> enviosxMensajeria2(@PathVariable String anio){
+        System.out.println("anio vale "+anio);
+        return serviceMensajeria2.enviosxmensajeria2(anio);
     }
     /* MENSAJERIA FIN*/
 
@@ -154,9 +155,10 @@ public class PakmailRestController {
         return modelandview;
     }
 
-    @GetMapping("/enviosportservicio2")
-    public List<Tservicio2> enviosxTservicio2(){
-        return serviceTservicio2.enviosxtservicio2();
+    @GetMapping("/enviosportservicio2/{anio}")
+    public List<Tservicio2> enviosxTservicio2(@PathVariable String anio){
+        System.out.println("anio vale "+anio);
+        return serviceTservicio2.enviosxtservicio2(anio);
     }
     /* MENSAJERIA FIN*/
 
@@ -170,9 +172,10 @@ public class PakmailRestController {
         return modelandview;
     }
 
-    @GetMapping("/enviosporfcontactosucursal2")
-    public List<FcontactoSucursal2> enviosxFcontactoSucursal2(){
-        return serviceFcontactoSucursal2.enviosxfcontactosucursal2();
+    @GetMapping("/enviosporfcontactosucursal2/{anio}")
+    public List<FcontactoSucursal2> enviosxFcontactoSucursal2(@PathVariable String anio){
+        System.out.println("anio vale "+anio);
+        return serviceFcontactoSucursal2.enviosxfcontactosucursal2(anio);
     }
     /* FCONTACTOSUCURSAL FIN*/
 

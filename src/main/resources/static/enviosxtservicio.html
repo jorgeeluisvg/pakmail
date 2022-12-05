@@ -173,7 +173,7 @@
 							<h4 class="mb-3 mb-md-0">Cantidad e importe por Tipos de servicio </h4>
 						</div>
 						<div class="d-flex align-items-center flex-wrap text-nowrap">
-							<button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+							<button onclick='getanio()' type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
 								<i class="btn-icon-prepend" data-feather="download-cloud"></i>
 								Generar Reporte
 							</button>
@@ -186,8 +186,8 @@
 					<div class="form-group">
 						<label>Selecciona Año</label>
 						<select class="js-example-basic-single w-100" id="vanio">
-							<option value="1">2011</option>
-							<option value="2">2012</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
 						</select>
 						<br>
 
@@ -196,6 +196,10 @@
 				<table class="display" style="width:100%" id="tabla" >
 					<thead>
 						<tr>
+							<th>
+								Mensajeria
+							</th>
+
 							<th>
 								Tipo de Servicio
 							</th>
@@ -236,12 +240,25 @@
 							<th>
 								Diciembre
 							</th>
+							<th>
+								Total
+							</th>
+							<th>
+								Total Importe
+							</th>
+							<th>
+								Anio
+							</th>
 
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
 							<td> </td>
 							<td> </td>
 							<td> </td>
@@ -297,255 +314,127 @@
 			src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 			<script>
-				$(document).ready(function () {
+				function getanio(){
+					var e = document.getElementById("vanio");
+					var value = e.value;
+					var text = e.options[e.selectedIndex].text;
+					cargarPorTservicio(value);
+				}
 
-					cargarPorTservicio();
-
-					async function cargarPorTservicio() {
-						const respuesta = await fetch('enviosportservicio2/', {
-							method: 'GET',
-							headers: {
-								'Accept': 'application/json',
-								'Content-Type': 'application/json'
-							}
-						});
-						let content = await respuesta.json();
-						console.log(content);
-
-						//dataTable
-						$('#tabla').DataTable({
-							scrollX: true,
-							'destroy': true,
-							"pageLength": 5,
-							'data': content,
-							'columns': [
-								{ 'data': 'tipo_servicio' },
-								{ 'data': 'enero' },
-								{ 'data': 'febrero' },
-								{ 'data': 'marzo' },
-								{ 'data': 'abril' },
-								{ 'data': 'mayo' },
-								{ 'data': 'junio' },
-								{ 'data': 'julio' },
-								{ 'data': 'agosto' },
-								{ 'data': 'septiembre' },
-								{ 'data': 'octubre' },
-								{ 'data': 'noviembre' },
-								{ 'data': 'diciembre' },
-							],
-						});
-						return content;
-
+				async function cargarPorTservicio(anioseleccionado) {
+					console.log("el anio esta en"+anioseleccionado);
+					if (anioseleccionado == undefined){
+						anioseleccionado = 2011;
+						console.log("el anio esta en"+anioseleccionado);
 					}
-					cargarPorTservicio().then(content => {
-						const tservicio = content.map(
-								function (index) {
-									return index.tipo_servicio;
-								})
-
-						const enero = content.map(
-								function (index) {
-									return index.enero;
-								})
-
-						const febrero = content.map(
-								function (index) {
-									return index.febrero;
-								})
-
-						const marzo = content.map(
-								function (index) {
-									return index.marzo;
-								})
-
-						const abril = content.map(
-								function (index) {
-									return index.abril;
-								})
-
-						const mayo = content.map(
-								function (index) {
-									return index.mayo;
-								})
-
-						const junio = content.map(
-								function (index) {
-									return index.junio;
-								})
-
-						const julio = content.map(
-								function (index) {
-									return index.julio;
-								})
-
-						const agosto = content.map(
-								function (index) {
-									return index.agosto;
-								})
-						const septiembre = content.map(
-								function (index) {
-									return index.septiembre;
-								})
-
-						const octubre = content.map(
-								function (index) {
-									return index.octubre;
-								})
-
-						const noviembre = content.map(
-								function (index) {
-									return index.novimebre;
-								})
-
-						const diciembre = content.map(
-								function (index) {
-									return index.diciembre;
-								})
-
-						console.log(tservicio);
-						console.log("enero :");
-						console.log(enero);
-						console.log("febrero :");
-						console.log(febrero);
-						console.log("marzo :");
-						console.log(marzo);
-						console.log("Abril :");
-						console.log(abril);
-						console.log("mayo :");
-						console.log(mayo);
-						console.log("junio :");
-						console.log(junio);
-						console.log("julio :");
-						console.log(julio);
-						console.log("agosto :");
-						console.log(agosto);
-						console.log("septiembre :");
-						console.log(septiembre);
-						console.log("octubre :");
-						console.log(octubre);
-						console.log("noviembre :");
-						console.log(noviembre);
-						console.log("diciembre :");
-						console.log(diciembre);
-						myChart.config.data.labels = tservicio;
-						myChart.config.data.datasets[0].data = enero;
-						myChart.config.data.datasets[1].data = febrero;
-						myChart.config.data.datasets[2].data = marzo;
-						myChart.config.data.datasets[3].data = abril;
-						myChart.config.data.datasets[4].data = mayo;
-						myChart.config.data.datasets[5].data = junio;
-						myChart.config.data.datasets[6].data = julio;
-						myChart.config.data.datasets[7].data = agosto;
-						myChart.config.data.datasets[8].data = septiembre;
-						myChart.config.data.datasets[9].data = octubre;
-						myChart.config.data.datasets[10].data = noviembre;
-						myChart.config.data.datasets[11].data = diciembre;
-						myChart.update();
+					const respuesta = await fetch('enviosportservicio2/'+anioseleccionado, {
+						method: 'GET',
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json'
+						}
 					});
+					let content = await respuesta.json();
+					console.log(content);
 
-					const labels = [
-						'January',
-						'February',
-						'March',
-						'April',
-						'May',
-						'June',
-					];
+					const tipo_servicio = content.map(
+							function (index) {
+								return index.tipo_servicio;
+							})
 
-					const data = {
-						labels: labels,
-						datasets: [{
-							label: 'Enero',
-							backgroundColor: 'rgb(255, 99, 132)',
-							borderColor: 'rgb(255, 99, 132)',
-							data: [0, 10, 5, 2, 20, 30, 45],
-						}, {
-							label: 'Febrero',
-							backgroundColor: 'rgb(563, 11, 132)',
-							borderColor: 'rgb(255, 99, 132)',
-							data: [0, 10, 5, 2, 20, 30, 45],
-						},
-							{
-								label: 'Marzo',
-								backgroundColor: 'rgb(80, 80, 00)',
-								borderColor: 'rgb(80, 80, 00)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Abril',
-								backgroundColor: 'rgb(125, 216, 91)',
-								borderColor: 'rgb(125, 216, 91)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Mayo',
-								backgroundColor: 'rgb(8, 129, 129)',
-								borderColor: 'rgb(8, 129, 129)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Junio',
-								backgroundColor: 'rgb(22, 209, 209)',
-								borderColor: 'rgb(22, 209, 209)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Julio',
-								backgroundColor: 'rgb(218, 232, 28)',
-								borderColor: 'rgb(218, 232, 28)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Agosto',
-								backgroundColor: 'rgb(232, 164, 28)',
-								borderColor: 'rgb(232, 164, 28)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Septiembre',
-								backgroundColor: 'rgb(232, 103, 28)',
-								borderColor: 'rgb(232, 103, 28)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Octubre',
-								backgroundColor: 'rgb(211, 28, 232)',
-								borderColor: 'rgb(211, 28, 232)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Noviembre',
-								backgroundColor: 'rgb(245, 146, 255)',
-								borderColor: 'rgb(245, 146, 255)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
-							{
-								label: 'Diciembre',
-								backgroundColor: 'rgb(255, 100, 100)',
-								borderColor: 'rgb(255, 100, 100)',
-								data: [0, 10, 5, 2, 20, 30, 45],
-							},
+					const total = content.map(
+							function (index) {
+								return index.total;
+							})
 
-						]
-					};
+					const total_impor = content.map(
+							function (index) {
+								return index.total_impor;
+							})
 
-					const config = {
-						type: 'bar',
-						data: data,
-						options: {
-							scales: {
-								y: {
-									beginAtZero: true
-								}
+					console.log(tipo_servicio);
+					console.log("total :");
+					console.log(total);
+					console.log("total importe :");
+					console.log(total_impor);
+
+					myChart.config.data.labels = tipo_servicio;
+					myChart.config.data.datasets[0].data = total;
+					myChart.config.data.datasets[1].data = total_impor;
+					myChart.update();
+
+					//dataTable
+					$('#tabla').DataTable({
+						scrollX: true,
+						'destroy': true,
+						"pageLength": 5,
+						'data': content,
+						'columns': [
+							{ 'data': 'mensajeria' },
+							{ 'data': 'tipo_servicio' },
+							{ 'data': 'enero' },
+							{ 'data': 'febrero' },
+							{ 'data': 'marzo' },
+							{ 'data': 'abril' },
+							{ 'data': 'mayo' },
+							{ 'data': 'junio' },
+							{ 'data': 'julio' },
+							{ 'data': 'agosto' },
+							{ 'data': 'septiembre' },
+							{ 'data': 'octubre' },
+							{ 'data': 'noviembre' },
+							{ 'data': 'diciembre' },
+							{ 'data': 'total' },
+							{ 'data': 'total_impor' },
+							{ 'data': 'anio' },
+						],
+					});
+					return content;
+
+				}
+
+				const labels = [
+					'January',
+					'February',
+					'March',
+					'April',
+					'May',
+					'June',
+				];
+
+				const data = {
+					labels: labels,
+					datasets: [{
+						label: 'total',
+						backgroundColor: 'rgb(255, 99, 132)',
+						borderColor: 'rgb(255, 99, 132)',
+						data: [0, 10, 5, 2, 20, 30, 45],
+					}, {
+						label: 'total importe',
+						backgroundColor: 'rgb(0, 255, 0)',
+						borderColor: 'rgb(0, 255, 0)',
+						data: [0, 10, 5, 2, 20, 30, 45],
+					},
+
+					]
+				};
+
+				const config = {
+					type: 'bar',
+					data: data,
+					options: {
+						scales: {
+							y: {
+								beginAtZero: true
 							}
-						},
-					};
+						}
+					},
+				};
 
-					const myChart = new Chart(
-							document.getElementById('myChart'),
-							config
-					);
-				});
+				const myChart = new Chart(
+						document.getElementById('myChart'),
+						config
+				);
 				<!--Graficas -->
 
 			</script>

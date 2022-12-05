@@ -173,7 +173,7 @@
 							<h4 class="mb-3 mb-md-0">Cantidad e importe envios por Cliente </h4>
 						</div>
 						<div class="d-flex align-items-center flex-wrap text-nowrap">
-							<button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+							<button onclick='getanio()' type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
 								<i class="btn-icon-prepend" data-feather="download-cloud"></i>
 								Generar Reporte
 							</button>
@@ -185,8 +185,8 @@
 						<div class="form-group">
 							<label>Selecciona Año</label>
 							<select class="js-example-basic-single w-100" id="vanio">
-								<option value="1">2011</option>
-								<option value="2">2012</option>
+								<option value="2011">2011</option>
+								<option value="2012">2012</option>
 							</select>
 							<br>
 
@@ -306,76 +306,83 @@
 			src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 		<script>
-			$(document).ready(function () {
+			function getanio(){
+				var e = document.getElementById("vanio");
+				var value = e.value;
+				var text = e.options[e.selectedIndex].text;
+				cargarPorCliente(value);
+			}
 
-				cargarPorCliente();
-
-				async function cargarPorCliente() {
-					const respuesta = await fetch('enviosporcliente2/', {
-						method: 'GET',
-						headers: {
-							'Accept': 'application/json',
-							'Content-Type': 'application/json'
-						}
-					});
-					let content = await respuesta.json();
-					console.log(content);
-
-					//dataTable
-					$('#tabla').DataTable({
-						scrollX: true,
-						'destroy': true,
-						"pageLength": 5,
-						'data': content,
-						'columns': [
-							{ 'data': 'cliente' },
-							{ 'data': 'enero' },
-							{ 'data': 'febrero' },
-							{ 'data': 'marzo' },
-							{ 'data': 'abril' },
-							{ 'data': 'mayo' },
-							{ 'data': 'junio' },
-							{ 'data': 'julio' },
-							{ 'data': 'agosto' },
-							{ 'data': 'septiembre' },
-							{ 'data': 'octubre' },
-							{ 'data': 'noviembre' },
-							{ 'data': 'diciembre' },
-							{ 'data': 'total' },
-							{ 'data': 'total_impor' },
-							{ 'data': 'anio' },
-						],
-					});
-					return content;
-
+			async function cargarPorCliente(anioseleccionado) {
+				console.log("el anio esta en"+anioseleccionado);
+				if (anioseleccionado == undefined){
+					anioseleccionado = 2011;
+					console.log("el anio esta en"+anioseleccionado);
 				}
-				cargarPorCliente().then(content => {
-					const cliente = content.map(
-							function (index) {
-								return index.cliente;
-							})
-
-					const total = content.map(
-							function (index) {
-								return index.total;
-							})
-
-					const total_impor = content.map(
-							function (index) {
-								return index.total_impor;
-							})
-
-					console.log(cliente);
-					console.log("total :");
-					console.log(total);
-					console.log("total_impor :");
-					console.log(total_impor);
-
-					myChart.config.data.labels = cliente;
-					myChart.config.data.datasets[0].data = total;
-					myChart.config.data.datasets[1].data = total_impor;
-					myChart.update();
+				const respuesta = await fetch('enviosporcliente2/'+anioseleccionado, {
+					method: 'GET',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					}
 				});
+				let content = await respuesta.json();
+				console.log(content);
+
+				const cliente = content.map(
+						function (index) {
+							return index.cliente;
+						})
+
+				const total = content.map(
+						function (index) {
+							return index.total;
+						})
+
+				const total_impor = content.map(
+						function (index) {
+							return index.total_impor;
+						})
+
+				console.log(cliente);
+				console.log("total :");
+				console.log(total);
+				console.log("total importe :");
+				console.log(total_impor);
+
+				myChart.config.data.labels = cliente;
+				myChart.config.data.datasets[0].data = total;
+				myChart.config.data.datasets[1].data = total_impor;
+				myChart.update();
+
+				//dataTable
+				$('#tabla').DataTable({
+					scrollX: true,
+					'destroy': true,
+					"pageLength": 5,
+					'data': content,
+					'columns': [
+						{ 'data': 'cliente' },
+						{ 'data': 'enero' },
+						{ 'data': 'febrero' },
+						{ 'data': 'marzo' },
+						{ 'data': 'abril' },
+						{ 'data': 'mayo' },
+						{ 'data': 'junio' },
+						{ 'data': 'julio' },
+						{ 'data': 'agosto' },
+						{ 'data': 'septiembre' },
+						{ 'data': 'octubre' },
+						{ 'data': 'noviembre' },
+						{ 'data': 'diciembre' },
+						{ 'data': 'total' },
+						{ 'data': 'total_impor' },
+						{ 'data': 'anio' },
+					],
+				});
+				return content;
+
+			}
 
 			const labels = [
 				'January',
@@ -389,14 +396,14 @@
 			const data = {
 				labels: labels,
 				datasets: [{
-					label: 'Total',
+					label: 'total',
 					backgroundColor: 'rgb(255, 99, 132)',
 					borderColor: 'rgb(255, 99, 132)',
 					data: [0, 10, 5, 2, 20, 30, 45],
 				}, {
-					label: 'Total Importe',
+					label: 'total importe',
 					backgroundColor: 'rgb(0, 255, 0)',
-					borderColor: 'rgb(255, 99, 132)',
+					borderColor: 'rgb(0, 255, 0)',
 					data: [0, 10, 5, 2, 20, 30, 45],
 				},
 
@@ -419,7 +426,7 @@
 					document.getElementById('myChart'),
 					config
 			);
-			});
+
 			<!--Graficas -->
 
 			</script>

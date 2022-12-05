@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface Mensajeria2Service {
-    List<Mensajeria2> enviosxmensajeria2();
+    List<Mensajeria2> enviosxmensajeria2(String anioo);
 }

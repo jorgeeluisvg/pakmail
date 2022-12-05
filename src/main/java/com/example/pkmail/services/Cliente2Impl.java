@@ -13,7 +13,7 @@ public class Cliente2Impl implements Cliente2Service {
     private Cliente2Repository repositorioCliente2;
 
     @Override
-    public List<Cliente2> enviosxcliente2() {
-        return repositorioCliente2.enviosxcliente2();
+    public List<Cliente2> enviosxcliente2(String anioo) {
+        return repositorioCliente2.enviosxcliente2(anioo);
     }
 }

@@ -12,8 +12,9 @@ public class Mensajeria2ServiceImpl implements Mensajeria2Service{
     @Autowired
     private Mensajeria2Repository repositorioMensajeria2;
 
+
     @Override
-    public List<Mensajeria2> enviosxmensajeria2() {
-        return repositorioMensajeria2.enviosxmensajeria2();
+    public List<Mensajeria2> enviosxmensajeria2(String anioo) {
+        return repositorioMensajeria2.enviosxmensajeria2(anioo);
     }
 }

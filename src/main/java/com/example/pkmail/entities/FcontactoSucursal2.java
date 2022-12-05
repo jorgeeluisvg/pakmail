@@ -5,12 +5,12 @@ import javax.persistence.*;
 
 @Entity
 public class FcontactoSucursal2 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "sucursal",nullable = true)
     private String sucursal;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "forma_contacto",nullable = true)
     private String forma_contacto;
 

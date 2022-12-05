@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Tservicio2 {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "mensajeria",nullable = true)
+    private String mensajeria;
 
     @Column(name = "tipo_servicio",nullable = true)
     private String tipo_servicio;
@@ -46,6 +47,25 @@ public class Tservicio2 {
 
     @Column(name = "Diciembre",nullable = true)
     private String Diciembre;
+
+    @Column(name = "Total",nullable = true)
+    private String Total;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Total_impor",nullable = true)
+    private String Total_impor;
+
+    @Column(name = "anio",nullable = true)
+    private String anio;
+
+    public String getMensajeria() {
+        return mensajeria;
+    }
+
+    public void setMensajeria(String mensajeria) {
+        this.mensajeria = mensajeria;
+    }
 
     public String getTipo_servicio() {
         return tipo_servicio;
@@ -149,5 +169,29 @@ public class Tservicio2 {
 
     public void setDiciembre(String diciembre) {
         Diciembre = diciembre;
+    }
+
+    public String getTotal() {
+        return Total;
+    }
+
+    public void setTotal(String total) {
+        Total = total;
+    }
+
+    public String getTotal_impor() {
+        return Total_impor;
+    }
+
+    public void setTotal_impor(String total_impor) {
+        Total_impor = total_impor;
+    }
+
+    public String getAnio() {
+        return anio;
+    }
+
+    public void setAnio(String anio) {
+        this.anio = anio;
     }
 }

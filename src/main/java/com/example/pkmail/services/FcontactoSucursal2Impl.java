@@ -14,8 +14,8 @@ public class FcontactoSucursal2Impl implements  FcontactoSucursal2Service{
     private FcontactoSucursal2Repository repositorioFcontactoSucursal2;
 
     @Override
-    public List<FcontactoSucursal2> enviosxfcontactosucursal2() {
-        return repositorioFcontactoSucursal2.enviosxfcontactosucursal2();
+    public List<FcontactoSucursal2> enviosxfcontactosucursal2(String anioo) {
+        return repositorioFcontactoSucursal2.enviosxfcontactosucursal2(anioo);
     }
 
 

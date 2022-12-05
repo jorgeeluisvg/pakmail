@@ -1,7 +1,6 @@
 package com.example.pkmail.services;
 
 
-import com.example.pkmail.entities.Cliente;
 import com.example.pkmail.entities.FcontactoSucursal;
 import com.example.pkmail.repository.FcontactoSucursalRepository;
 import org.springframework.beans.factory.annotation.Autowired;

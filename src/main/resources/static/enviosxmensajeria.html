@@ -173,7 +173,7 @@
 							<h4 class="mb-3 mb-md-0">Cantidad e importe envios por Mensajeria </h4>
 						</div>
 						<div class="d-flex align-items-center flex-wrap text-nowrap">
-							<button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+							<button onclick='getanio()' type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" >
 								<i class="btn-icon-prepend" data-feather="download-cloud"></i>
 								Generar Reporte
 							</button>
@@ -185,8 +185,8 @@
 					<div class="form-group">
 						<label>Selecciona Año</label>
 						<select class="js-example-basic-single w-100" id="vanio">
-							<option value="1">2011</option>
-							<option value="2">2012</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
 						</select>
 						<br>
 
@@ -311,12 +311,20 @@
 			src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 			<script>
-				$(document).ready(function () {
+					function getanio(){
+						var e = document.getElementById("vanio");
+						var value = e.value;
+						var text = e.options[e.selectedIndex].text;
+						cargarPorMensajeria(value);
+					}
 
-					cargarPorMensajeria();
-
-					async function cargarPorMensajeria() {
-						const respuesta = await fetch('enviospormensajeria2/', {
+					async function cargarPorMensajeria(anioseleccionado) {
+						console.log("el anio esta en"+anioseleccionado);
+						if (anioseleccionado == undefined){
+							anioseleccionado = 2011;
+							console.log("el anio esta en"+anioseleccionado);
+						}
+						const respuesta = await fetch('enviospormensajeria2/'+anioseleccionado, {
 							method: 'GET',
 							headers: {
 								'Accept': 'application/json',
@@ -325,6 +333,32 @@
 						});
 						let content = await respuesta.json();
 						console.log(content);
+
+						const mensajeria = content.map(
+								function (index) {
+									return index.mensajeria;
+								})
+
+						const total = content.map(
+								function (index) {
+									return index.total;
+								})
+
+						const total_impor = content.map(
+								function (index) {
+									return index.total_impor;
+								})
+
+						console.log(mensajeria);
+						console.log("total :");
+						console.log(total);
+						console.log("total importe :");
+						console.log(total_impor);
+
+						myChart.config.data.labels = mensajeria;
+						myChart.config.data.datasets[0].data = total;
+						myChart.config.data.datasets[1].data = total_impor;
+						myChart.update();
 
 						//dataTable
 						$('#tabla').DataTable({
@@ -355,35 +389,6 @@
 						return content;
 
 					}
-					cargarPorMensajeria().then(content => {
-						const mensajeria = content.map(
-								function (index) {
-									return index.mensajeria;
-								})
-
-						const total = content.map(
-								function (index) {
-									return index.total;
-								})
-
-						const total_impor = content.map(
-								function (index) {
-									return index.total_impor;
-								})
-
-
-
-						console.log(mensajeria);
-						console.log("total :");
-						console.log(total);
-						console.log("total importe :");
-						console.log(total_impor);
-
-						myChart.config.data.labels = mensajeria;
-						myChart.config.data.datasets[0].data = total;
-						myChart.config.data.datasets[1].data = total_impor;
-						myChart.update();
-					});
 
 					const labels = [
 						'January',
@@ -427,7 +432,7 @@
 							document.getElementById('myChart'),
 							config
 					);
-				});
+
 				<!--Graficas -->
 
 			</script>

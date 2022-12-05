@@ -1,6 +1,5 @@
 package com.example.pkmail.repository;
 
-import com.example.pkmail.entities.Cliente;
 import com.example.pkmail.entities.FcontactoSucursal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

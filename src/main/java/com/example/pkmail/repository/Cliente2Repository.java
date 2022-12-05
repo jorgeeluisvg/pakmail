@@ -4,6 +4,7 @@ package com.example.pkmail.repository;
 import com.example.pkmail.entities.Cliente2;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public interface Cliente2Repository extends JpaRepository<Cliente2,Long> {
             "E.anio\n" +
             "from (select distinct  id_cliente,year(STR_TO_DATE(id_fecha, \"%Y%m%d\")) anio from h_envios) E\n" +
             "Left join d_cliente C ON E.id_cliente = C.id_cliente\n" +
-            "where C.cliente like \"%%\" AND E.anio like \"%%\"\n" +
-            "group by C.id_cliente,E.anio",nativeQuery = true)
-    List<Cliente2> enviosxcliente2();
+            "where C.cliente like \"%%\" AND E.anio like :anioo\n" +
+            "group by C.id_cliente,E.anio;",nativeQuery = true)
+    List<Cliente2> enviosxcliente2(@Param("anioo") String anioo);
 }
