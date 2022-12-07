@@ -50,10 +50,18 @@
 							<span class="link-title">Dashboard</span>
 						</a>
 					</li>
+
+					<li class="nav-item">
+						<a href="/tabla" class="nav-link">
+							<i class="link-icon" data-feather="box"></i>
+							<span class="link-title">Tabla General</span>
+						</a>
+					</li>
+
 					<li class="nav-item">
 						<a href="/dropzone" class="nav-link">
 							<i class="link-icon" data-feather="box"></i>
-							<span class="link-title">Dropzone</span>
+							<span class="link-title">Carga</span>
 						</a>
 					</li>
 					<li class="nav-item nav-category">Funciones</li>
@@ -190,6 +198,12 @@
 							</select>
 							<br>
 
+							<select class="js-example-basic-single w-100" id="vgrafica">
+								<option value="total">total</option>
+								<option value="total importe">total importe</option>
+							</select>
+							<br>
+
 						<!--Aqui va el footer y la tabla-->
 
 				<table class="display" style="width:100%" id="tabla" >
@@ -306,61 +320,98 @@
 			src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 		<script>
+			let contentg;
 			function getanio(){
 				var e = document.getElementById("vanio");
 				var value = e.value;
 				var text = e.options[e.selectedIndex].text;
-				cargarPorCliente(value);
+
+				var r = document.getElementById("vgrafica");
+				var valuegrafica = r.value;
+				var textgrafica = r.options[r.selectedIndex].text;
+				cargarPorMensajeria(value,valuegrafica);
 			}
 
-			async function cargarPorCliente(anioseleccionado) {
+			async function cargarPorMensajeria(anioseleccionado,valuegrafica) {
 				console.log("el anio esta en"+anioseleccionado);
+				console.log("el valor grafico "+valuegrafica);
 				if (anioseleccionado == undefined){
 					anioseleccionado = 2011;
 					console.log("el anio esta en"+anioseleccionado);
 				}
-				const respuesta = await fetch('enviosporcliente2/'+anioseleccionado, {
-					method: 'GET',
-					headers: {
-						'Accept': 'application/json',
-						'Content-Type': 'application/json'
-					}
-				});
-				let content = await respuesta.json();
-				console.log(content);
 
-				const cliente = content.map(
-						function (index) {
-							return index.cliente;
-						})
+				if (valuegrafica != 'total'){
+					const respuesta = await fetch('enviosporcliente2/'+anioseleccionado, {
+						method: 'GET',
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json'
+						}
+					});
+					let content = await respuesta.json()
+					contentg = content;
+					console.log(content);
 
-				const total = content.map(
-						function (index) {
-							return index.total;
-						})
+					const cliente = content.map(
+							function (index) {
+								return index.cliente;
+							})
 
-				const total_impor = content.map(
-						function (index) {
-							return index.total_impor;
-						})
+					const total_impor = content.map(
+							function (index) {
+								return index.total_impor;
+							})
 
-				console.log(cliente);
-				console.log("total :");
-				console.log(total);
-				console.log("total importe :");
-				console.log(total_impor);
+					console.log(cliente);
+					console.log("total importe :");
+					console.log(total_impor);
 
-				myChart.config.data.labels = cliente;
-				myChart.config.data.datasets[0].data = total;
-				myChart.config.data.datasets[1].data = total_impor;
-				myChart.update();
+					myChart.config.data.labels = cliente;
+					myChart.config.data.datasets[0].data = total_impor;
+					myChart.update();
+				}
+				else{
+					const respuesta = await fetch('enviosporcliente2/'+anioseleccionado, {
+						method: 'GET',
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json'
+						}
+					});
+					let content = await respuesta.json();
+					contentg = content;
+					console.log(content);
+
+					const cliente = content.map(
+							function (index) {
+								return index.cliente;
+							})
+
+					const total = content.map(
+							function (index) {
+								return index.total;
+							})
+
+					console.log(cliente);
+					console.log("total :");
+					console.log(total);
+
+
+					myChart.config.data.labels = cliente;
+					myChart.config.data.datasets[0].data = total;
+					myChart.update();
+				}
+
+				//Graficas
+
+
 
 				//dataTable
 				$('#tabla').DataTable({
 					scrollX: true,
 					'destroy': true,
 					"pageLength": 5,
-					'data': content,
+					'data': contentg,
 					'columns': [
 						{ 'data': 'cliente' },
 						{ 'data': 'enero' },
@@ -396,16 +447,11 @@
 			const data = {
 				labels: labels,
 				datasets: [{
-					label: 'total',
+					label: 'Valores',
 					backgroundColor: 'rgb(255, 99, 132)',
 					borderColor: 'rgb(255, 99, 132)',
 					data: [0, 10, 5, 2, 20, 30, 45],
-				}, {
-					label: 'total importe',
-					backgroundColor: 'rgb(0, 255, 0)',
-					borderColor: 'rgb(0, 255, 0)',
-					data: [0, 10, 5, 2, 20, 30, 45],
-				},
+				}
 
 				]
 			};
@@ -426,6 +472,7 @@
 					document.getElementById('myChart'),
 					config
 			);
+
 
 			<!--Graficas -->
 

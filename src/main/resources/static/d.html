@@ -45,15 +45,25 @@
 				<ul class="nav">
 					<li class="nav-item nav-category">Main</li>
 					<li class="nav-item">
-						<a href="index.html" class="nav-link">
+						<a href="d.html" class="nav-link">
 							<i class="link-icon" data-feather="box"></i>
 							<span class="link-title">Dashboard</span>
 						</a>
 					</li>
+
+
+					<li class="nav-item">
+						<a href="/tabla" class="nav-link">
+							<i class="link-icon" data-feather="box"></i>
+							<span class="link-title">Tabla General</span>
+						</a>
+					</li>
+
+
 					<li class="nav-item">
 						<a href="/dropzone" class="nav-link">
 							<i class="link-icon" data-feather="box"></i>
-							<span class="link-title">Dropzone</span>
+							<span class="link-title">Carga</span>
 						</a>
 					</li>
 					<li class="nav-item nav-category">Funciones</li>
@@ -81,7 +91,7 @@
 					</li>
 					<br>
 					<li class="nav-item">
-						<a href="/envios/servicio-mesajeria-fecha" class="nav-link">
+						<a href="/enviosxtservicio" class="nav-link">
 							<i class="link-icon" data-feather="calendar"></i>
 							<span class="link-title">Envios servicio<br> Mensajeria-Fecha</span>
 						</a>
@@ -115,54 +125,7 @@
 							</div>
 						</div>
 					</form>
-					<ul class="navbar-nav">
 
-						<li class="nav-item dropdown nav-profile">
-							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="https://via.placeholder.com/30x30" alt="profile">
-							</a>
-							<div class="dropdown-menu" aria-labelledby="profileDropdown">
-								<div class="dropdown-header d-flex flex-column align-items-center">
-									<div class="figure mb-3">
-										<img src="https://via.placeholder.com/80x80" alt="">
-									</div>
-									<div class="info text-center">
-										<p class="name font-weight-bold mb-0">Amiah Burton</p>
-										<p class="email text-muted mb-3">amiahburton@gmail.com</p>
-									</div>
-								</div>
-								<div class="dropdown-body">
-									<ul class="profile-nav p-0 pt-3">
-										<li class="nav-item">
-											<a href="pages/general/profile.html" class="nav-link">
-												<i data-feather="user"></i>
-												<span>Profile</span>
-											</a>
-										</li>
-										<li class="nav-item">
-											<a href="javascript:;" class="nav-link">
-												<i data-feather="edit"></i>
-												<span>Edit Profile</span>
-											</a>
-										</li>
-										<li class="nav-item">
-											<a href="javascript:;" class="nav-link">
-												<i data-feather="repeat"></i>
-												<span>Switch User</span>
-											</a>
-										</li>
-										<li class="nav-item">
-											<a href="javascript:;" class="nav-link">
-												<i data-feather="log-out"></i>
-												<span>Log Out</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</li>
-					</ul>
 				</div>
 			</nav>
 			<!-- partial -->
@@ -171,7 +134,7 @@
 
 						<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 							<div>
-								<h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
+								<h4 class="mb-3 mb-md-0">Dashboard</h4>
 							</div>
 						</div>
 
@@ -182,7 +145,7 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="d-flex justify-content-between align-items-baseline">
-													<h6 class="card-title mb-0">New Customers</h6>
+													<h6 class="card-title mb-0">Mayor importe Global Sucursal: PAKMAILCFE</h6>
 													<div class="dropdown mb-2">
 														<button class="btn p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 															<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -198,7 +161,7 @@
 												</div>
 												<div class="row">
 													<div class="col-6 col-md-12 col-xl-5">
-														<h3 class="mb-2">3,897</h3>
+														<h3 style="color: yellow;" class="mb-2">1208606</h3>
 														<div class="d-flex align-items-baseline">
 															<p class="text-success">
 																<span>+3.3%</span>
@@ -213,16 +176,18 @@
 											</div>
 										</div>
 									</div>
+
+
 									<div class="col-md-4 grid-margin stretch-card">
 										<div class="card">
 											<div class="card-body">
 												<div class="d-flex justify-content-between align-items-baseline">
-													<h6 class="card-title mb-0">New Orders</h6>
+													<h6 class="card-title mb-0">Mayor importe Global Sucursal: PAKMAIL32</h6>
 													<div class="dropdown mb-2">
-														<button class="btn p-0" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<button class="btn p-0" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 															<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
 														</button>
-														<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
+														<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>
 															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
 															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
@@ -233,11 +198,11 @@
 												</div>
 												<div class="row">
 													<div class="col-6 col-md-12 col-xl-5">
-														<h3 class="mb-2">35,084</h3>
+														<h3 style="color: yellow;" class="mb-2">2396535</h3>
 														<div class="d-flex align-items-baseline">
-															<p class="text-danger">
-																<span>-2.8%</span>
-																<i data-feather="arrow-down" class="icon-sm mb-1"></i>
+															<p class="text-success">
+																<span>+1.2%</span>
+																<i data-feather="arrow-up" class="icon-sm mb-1"></i>
 															</p>
 														</div>
 													</div>
@@ -248,16 +213,18 @@
 											</div>
 										</div>
 									</div>
+
+
 									<div class="col-md-4 grid-margin stretch-card">
 										<div class="card">
 											<div class="card-body">
 												<div class="d-flex justify-content-between align-items-baseline">
-													<h6 class="card-title mb-0">Growth</h6>
+													<h6 class="card-title mb-0">Mayor importe Global Tipo de Envio: ENVIO INT</h6>
 													<div class="dropdown mb-2">
-														<button class="btn p-0" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<button class="btn p-0" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 															<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
 														</button>
-														<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
+														<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>
 															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
 															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
@@ -268,10 +235,10 @@
 												</div>
 												<div class="row">
 													<div class="col-6 col-md-12 col-xl-5">
-														<h3 class="mb-2">89.87%</h3>
+														<h3 style="color: yellow;" class="mb-2">822096</h3>
 														<div class="d-flex align-items-baseline">
 															<p class="text-success">
-																<span>+2.8%</span>
+																<span>+2.3%</span>
 																<i data-feather="arrow-up" class="icon-sm mb-1"></i>
 															</p>
 														</div>
@@ -283,6 +250,119 @@
 											</div>
 										</div>
 									</div>
+
+
+
+									<div class="col-md-4 grid-margin stretch-card">
+										<div class="card">
+											<div class="card-body">
+												<div class="d-flex justify-content-between align-items-baseline">
+													<h6 class="card-title mb-0">Mayor envios Globales Sucursal: PAKMAIL132 MENSAJERIA ESTAFETA</h6>
+													<div class="dropdown mb-2">
+														<button class="btn p-0" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+														</button>
+														<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="printer" class="icon-sm mr-2"></i> <span class="">Print</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="download" class="icon-sm mr-2"></i> <span class="">Download</span></a>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-6 col-md-12 col-xl-5">
+														<h3 style="color: yellow;" class="mb-2">5068</h3>
+														<div class="d-flex align-items-baseline">
+															<p class="text-success">
+																<span>+7.1%</span>
+																<i data-feather="arrow-up" class="icon-sm mb-1"></i>
+															</p>
+														</div>
+													</div>
+													<div class="col-6 col-md-12 col-xl-7">
+														<div id="apexChart4" class="mt-md-3 mt-xl-0"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="col-md-4 grid-margin stretch-card">
+										<div class="card">
+											<div class="card-body">
+												<div class="d-flex justify-content-between align-items-baseline">
+													<h6 class="card-title mb-0">Mayor envios Globales Sucursal: PAKMAIL132 FORMA DE CONTACTO REFERENCIAS PERSONALES</h6>
+													<div class="dropdown mb-2">
+														<button class="btn p-0" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+														</button>
+														<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="printer" class="icon-sm mr-2"></i> <span class="">Print</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="download" class="icon-sm mr-2"></i> <span class="">Download</span></a>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-6 col-md-12 col-xl-5">
+														<h3 style="color: yellow;" class="mb-2">5846</h3>
+														<div class="d-flex align-items-baseline">
+															<p class="text-success">
+																<span>+2.9%</span>
+																<i data-feather="arrow-up" class="icon-sm mb-1"></i>
+															</p>
+														</div>
+													</div>
+													<div class="col-6 col-md-12 col-xl-7">
+														<div id="apexChart5" class="mt-md-3 mt-xl-0"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="col-md-4 grid-margin stretch-card">
+										<div class="card">
+											<div class="card-body">
+												<div class="d-flex justify-content-between align-items-baseline">
+													<h6 class="card-title mb-0">Mayor envios Globales TIPO ENVIO: ENVIO INT DESTINO USA</h6>
+													<div class="dropdown mb-2">
+														<button class="btn p-0" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+														</button>
+														<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="printer" class="icon-sm mr-2"></i> <span class="">Print</span></a>
+															<a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="download" class="icon-sm mr-2"></i> <span class="">Download</span></a>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-6 col-md-12 col-xl-5">
+														<h3 style="color: yellow;" class="mb-2">1066</h3>
+														<div class="d-flex align-items-baseline">
+															<p class="text-success">
+																<span>+1.1%</span>
+																<i data-feather="arrow-up" class="icon-sm mb-1"></i>
+															</p>
+														</div>
+													</div>
+													<div class="col-6 col-md-12 col-xl-7">
+														<div id="apexChart6" class="mt-md-3 mt-xl-0"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div> <!-- row -->
@@ -292,7 +372,7 @@
 								<div class="card overflow-hidden">
 									<div class="card-body">
 										<div class="d-flex justify-content-between align-items-baseline mb-4 mb-md-3">
-											<h6 class="card-title mb-0">Revenue</h6>
+											<h6 class="card-title mb-0">Ventas por año</h6>
 											<div class="dropdown">
 												<button class="btn p-0" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -308,7 +388,7 @@
 										</div>
 										<div class="row align-items-start mb-2">
 											<div class="col-md-7">
-												<p class="text-muted tx-13 mb-3 mb-md-0">Revenue is the income that a business has from its normal business activities, usually from the sale of goods and services to customers.</p>
+
 											</div>
 											<div class="col-md-5 d-flex justify-content-md-end">
 												<div class="btn-group mb-3 mb-md-0" role="group" aria-label="Basic example">
@@ -332,7 +412,7 @@
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between align-items-baseline mb-2">
-											<h6 class="card-title mb-0">Monthly sales</h6>
+											<h6 class="card-title mb-0">Ventas Mensuales</h6>
 											<div class="dropdown mb-2">
 												<button class="btn p-0" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -346,7 +426,6 @@
 												</div>
 											</div>
 										</div>
-										<p class="text-muted mb-4">Sales are activities related to selling or the number of goods or services sold in a given time period.</p>
 										<div class="monthly-sales-chart-wrapper">
 											<canvas id="monthly-sales-chart"></canvas>
 										</div>
@@ -357,7 +436,7 @@
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between align-items-baseline mb-2">
-											<h6 class="card-title mb-0">Cloud storage</h6>
+											<h6 class="card-title mb-0">Espacio Disponible</h6>
 											<div class="dropdown mb-2">
 												<button class="btn p-0" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -376,17 +455,17 @@
 											<div class="col-6 d-flex justify-content-end">
 												<div>
 													<label class="d-flex align-items-center justify-content-end tx-10 text-uppercase font-weight-medium">Total storage <span class="p-1 ml-1 rounded-circle bg-primary-muted"></span></label>
-													<h5 class="font-weight-bold mb-0 text-right">8TB</h5>
+													<h5 style="color: yellow;" class="font-weight-bold mb-0 text-right">235 GB</h5>
 												</div>
 											</div>
 											<div class="col-6">
 												<div>
 													<label class="d-flex align-items-center tx-10 text-uppercase font-weight-medium"><span class="p-1 mr-1 rounded-circle bg-primary"></span> Used storage</label>
-													<h5 class="font-weight-bold mb-0">6TB</h5>
+													<h5 style="color: yellow;" class="font-weight-bold mb-0">110 GB</h5>
 												</div>
 											</div>
 										</div>
-										<button class="btn btn-primary btn-block">Upgrade storage</button>
+										<button class="btn btn-primary btn-block">Espacio Disponible</button>
 									</div>
 								</div>
 							</div>

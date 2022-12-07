@@ -39,6 +39,15 @@ public class PakmailRestController {
     @GetMapping("/dashboard")
     public ModelAndView index(){
         ModelAndView modelandview = new ModelAndView();
+        modelandview.setViewName("d.html");
+        return modelandview;
+    }
+
+    /* TABLA*/
+    // PAGINA HTML
+    @GetMapping("/tabla")
+    public ModelAndView tabla(){
+        ModelAndView modelandview = new ModelAndView();
         modelandview.setViewName("Dashboard.html");
         return modelandview;
     }
